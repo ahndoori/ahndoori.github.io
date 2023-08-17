@@ -1,0 +1,194 @@
+<script src="/lib/jquery-3.7.0.min.js"></script>
+<script src="/lib/lottie-player-2.0.2.js"></script>
+<!--
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+-->
+<style>
+    lottie-player {
+    --lottie-player-seeker-track-color: black;
+    --lottie-player-seeker-thumb-color: #FF0066;
+    }
+
+	button{font-size:13px;padding:7px;}
+	input{font-size:27px;padding:5px;vertical-align:middle;}
+
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:white;color:black;padding-bottom:10%;}
+h1{text-align:center;margin:20% 0 5%;font-family:verdana;font-weight:100;}
+#radios{
+  position:relative;
+  width:50%;
+  margin:0 auto;
+}
+input[type="radio"]{
+  position:absolute;
+  right:1000%;
+}
+label{
+  float:left;
+  width:15%; padding-bottom:15%;
+  margin:0 2.5%;
+  background:rgba(0,0,0,.6);
+  border-radius:50%;
+  cursor:pointer;
+}
+#slider{
+  position:absolute;
+  left:0%; top:0;
+  width:10%; padding-bottom:10%;
+  margin:2.5% 0 0 5%;
+  background:gold;
+  transition:transform 1s;
+  border-radius:50%;
+  animation-timing-function: ease-in-out;
+  animation-duration:.3s;
+  animation-fill-mode: forwards;
+  transition: 0.2s left .05s ease-in-out;
+}
+#input1:checked  ~ #slider{ animation-name: input1; left:0; }
+#input2:checked  ~ #slider{ animation-name: input2; left:20%; }
+#input3:checked  ~ #slider{ animation-name: input3; left:40%; }
+#input4:checked  ~ #slider{ animation-name: input4; left:60%; }
+#input5:checked  ~ #slider{ animation-name: input5; left:80%; }
+
+@keyframes input1{ 30%, 70% { transform:scale(0.5); } }
+@keyframes input2{ 30%, 70% { transform:scale(0.5); } }
+@keyframes input3{ 30%, 70% { transform:scale(0.5); } }
+@keyframes input4{ 30%, 70% { transform:scale(0.5); } }
+@keyframes input5{ 30%, 70% { transform:scale(0.5); } }
+
+.w-btn:hover {
+    letter-spacing: 2px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+.w-btn:active {
+    transform: scale(1.3);
+}
+.w-btn {
+    margin:10px;color:white;
+    position:relative;
+    border:none;
+    display:inline-block;
+    padding:15px 30px;
+    border-radius:15px;
+    box-shadow:0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight:600;
+    transition:0.25s;
+    background-color:#ff6600;
+    color:white;
+}
+</style>
+<script type="text/javascript">
+var lottieAnimation1;
+var lottiePlayer1;
+
+$(document).ready(function(){
+    const lottiePlayer0 = document.querySelector('#lottiePlayer0');
+    lottiePlayer0.load("/conceptvideo/plus?formular=");
+    const lottieAnimation0 = lottiePlayer0.getLottie();
+    lottiePlayer0.play();
+
+    lottiePlayer1 = document.querySelector('#lottiePlayer1');
+    
+    //lottiePlayer1.load('{"v":"5.3.4","fr":30,"ip":0,"op":38,"w":315,"h":600,"nm":"new", ... }');
+    
+    $('button[name="loadLottiePlayer1"]').click(function(){
+        lottiePlayer1.load("/conceptvideo/plus?formular=");
+    });
+
+
+    $('button[name="seek1LottiePlayer1"]').click(function(){
+        console.log(lottiePlayer1.getLottie().totalFrames);
+        lottiePlayer1.seek(1000);
+        lottiePlayer1.play();
+    });
+
+    $('button[name="step1LottiePlayer1"]').click(function(){
+        lottiePlayer1.seek(0+1);
+        lottiePlayer1.play();
+    });
+    $('button[name="step2LottiePlayer1"]').click(function(){
+        lottiePlayer1.seek(100+1);
+        lottiePlayer1.play();
+    });
+    $('button[name="step3LottiePlayer1"]').click(function(){
+        lottiePlayer1.seek(200+1);
+        lottiePlayer1.play();
+    });
+    $('button[name="step4LottiePlayer1"]').click(function(){
+        lottiePlayer1.seek(300+1);
+        lottiePlayer1.play();
+    });
+    $('button[name="step5LottiePlayer1"]').click(function(){
+        lottiePlayer1.seek(400+1);
+        lottiePlayer1.play();
+    });
+
+
+    $('button[name="test"]').click(function(){
+    });
+
+    $('input[name="formular"]').val('22+49');
+    $('button[name="apply"]').click(function(){
+        console.log($('input[name="formular"]').val());
+        lottiePlayer1.load(`/conceptvideo/plus?formular=${encodeURIComponent($('input[name="formular"]').val())}`);
+		lottieAnimation1 = lottiePlayer1.getLottie();
+        lottiePlayer1.getLottie().addEventListener("enterFrame", function (animation) {
+            console.log(Math.floor(animation.currentTime));
+            if( !animation.currentTime >= lottieAnimation1.totalFrames ) lottiePlayer1.pause();
+            //if( Math.floor(animation.currentTime) % 100 <= 0 ) lottiePlayer1.pause();
+
+            /*
+            if (animation.currentTime > (lottieAnimation1.totalFrames - 2300)) {
+                lottiePlayer1.pause();
+            }
+            */
+        });
+    }).click();
+
+});
+</script>
+<!--<lottie-player src="./canvas.json" background="transparent"  speed="1"  style="width: 300px; height: 300px;" loop controls autoplay></lottie-player>-->
+
+
+<div style="width:1000px">
+<lottie-player id="lottiePlayer0" background="transparent"  speed="1" style="width: 500px; height: 500px;float:left;" autoplay loop></lottie-player>
+
+<lottie-player id="lottiePlayer1" background="transparent" speed="1" style="width: 500px; height: 500px;float:right;" controls></lottie-player>
+
+
+
+</div>
+<br/>
+<div style="padding:20px">
+	
+	<button name="loadLottiePlayer1">load 1</button>
+	<button name="step1LottiePlayer1">step 1</button>
+	<button name="step2LottiePlayer1">step 2</button>
+	<button name="step3LottiePlayer1">step 3</button>
+	<button name="step4LottiePlayer1">step 4</button>
+	<button name="step5LottiePlayer1">step 5</button>
+	<button name="test">test</button>
+
+</div>
+
+<div style="display:inline-block;vertical-align:top;padding-top:25px;padding-left:20px;">
+	<input name="formular"/>
+	<button class="w-btn" type="button" name="apply">APPLY</button>
+</div>
+<div id="radios" style="display:inline-block;">
+  <label for="input1"></label>
+  <input  id="input1" name="radio" type="radio" />
+  <label for="input2"></label>
+  <input  id="input2" name="radio" type="radio" />
+  <label for="input3"></label>
+  <input  id="input3" name="radio" type="radio" />
+  <label for="input4"></label>
+  <input  id="input4" name="radio" type="radio" />
+  <label for="input5"></label>
+  <input  id="input5" name="radio" type="radio" />
+  <span id="slider"></span>
+</div>

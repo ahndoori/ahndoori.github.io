@@ -1,0 +1,9 @@
+{
+	"env":"localhost",
+	"protocol":"http://",
+	"host":"21.136.10.128",
+	"port":"8088",
+	"protocol_backend":"http://",
+	"host_backend":"localhost:8089",
+	"port_backend":"443"
+}

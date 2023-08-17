@@ -1,0 +1,31 @@
+{
+  "name": "relay-model",
+  "version": "1.0.0",
+  "description": "To make it easy for you to get started with GitLab, here's a list of recommended next steps.",
+  "main": "app.js",
+  "scripts_": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "scripts": {
+    "external": "set NODE_ENV=ext && nodemon app",
+    "start": "set NODE_ENV=local && nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+http://git.wjtb.kr/ai-labs/barosem/relay-model.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "http://git.wjtb.kr/ai-labs/barosem/relay-model/issues"
+  },
+  "homepage": "http://git.wjtb.kr/ai-labs/barosem/relay-model#readme",
+  "dependencies": {
+    "express": "4.18.1",
+    "nock": "^13.2.4",
+    "nodemon": "^2.0.16",
+    "request": "^2.88.2",
+    "winston": "^3.7.2"
+  }
+}
