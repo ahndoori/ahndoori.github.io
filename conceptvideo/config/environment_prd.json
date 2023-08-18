@@ -1,9 +1,0 @@
-{
-	"env":"production",
-	"protocol":"https://",
-	"host":"prd-brs-game-api.mathpid.com",
-	"port":"443",
-	"protocol_backend":"https://",
-	"host_backend":"api-internal-game.mathpid.com",
-	"port_backend":"443"
-}

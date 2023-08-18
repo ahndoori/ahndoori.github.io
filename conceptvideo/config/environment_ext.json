@@ -1,9 +1,0 @@
-{
-	"env":"external",
-	"protocol":"https://",
-	"host":"prd-brs-relay.mathpid.com",
-	"port":"",
-	"protocol_backend":"http://",
-	"host_backend":"",
-	"port_backend":""
-}

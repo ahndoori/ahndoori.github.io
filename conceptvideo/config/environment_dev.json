@@ -1,9 +1,0 @@
-{
-	"env":"development",
-	"protocol":"https://",
-	"host":"dev-api-internal-game.wjtb.kr",
-	"port":"443",
-	"protocol_backend":"https://",
-	"host_backend":"dev-api-internal-service-game.wjtb.kr",
-	"port_backend":"443"
-}
