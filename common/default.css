@@ -1,0 +1,10 @@
+body{
+	background-color:#eeeeee;
+	color:#555555;
+}
+a:link{color:#000000;text-decoration:none;}
+a:hover{color:#FF6600;text-decoration:underline;}
+
+.screenshot{border:1px #555555 solid;height:50px;}
+
+h3{margin-bottom:0;}

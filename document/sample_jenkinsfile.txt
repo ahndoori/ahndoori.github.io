@@ -1,0 +1,136 @@
+import groovy.json.JsonSlurper
+
+def AWS_DEFAULT_REGION = "ap-northeast-2"
+def AWS_PROFILE = ""
+def S3_KEY_PREFIX = ""
+def S3_BUCKET = ""
+def S3_FILE_NAME = ""
+def DEPLOY_GROUP_NAME = ""
+def DEPLOYMENT_ID = ""
+def PROJECT = ""
+def SYSTEM_SUFFIX = ""
+def HELATH_TIMEOUT = ""
+
+@NonCPS
+def toJson(String text) {
+    def parser = new JsonSlurper()
+    return parser.parseText( text )
+}
+
+def initEnvironments(String buildBranch) {
+	if(buildBranch == "production") {
+        env.AWS_PROFILE = "PRD"
+        env.S3_KEY_PREFIX = "mpd"
+        env.S3_BUCKET = "XXX-prd-deploy"
+        env.DEPLOY_GROUP_NAME = "prd-PROJECT-deploy-group"
+        env.PROJECT = "prd-PROJECT-admin"
+        env.PACKAGE_NAME = "${env.PROJECT}_${BUILD_NUMBER}"
+        env.SYSTEM_SUFFIX = ":production"
+        env.HELATH_TIMEOUT = 120
+    } else if(buildBranch == "development") {
+        env.AWS_PROFILE = "DEV"
+        env.S3_KEY_PREFIX = "mpd"
+        env.S3_BUCKET = "XXX-dev-deploy"
+        env.DEPLOY_GROUP_NAME = "dev-PROJECT-deploy-group"
+        env.PROJECT = "dev-PROJECT-admin"
+        env.PACKAGE_NAME = "${env.PROJECT}"
+        env.SYSTEM_SUFFIX = ":development"
+        env.HELATH_TIMEOUT = 3
+    } else if(buildBranch == "master") {
+        env.AWS_PROFILE = "PRD"
+        env.S3_KEY_PREFIX = "NAME"
+        env.S3_BUCKET = "XXX-prd-deploy"
+        env.DEPLOY_GROUP_NAME = "prd-NAME-deploy-group"
+        env.PROJECT = "prd-NAME-bo-frontend"
+        env.PACKAGE_NAME = "${env.PROJECT}_${BUILD_NUMBER}"
+        env.SYSTEM_SUFFIX = ":prod"
+        env.HELATH_TIMEOUT = 120
+    } else if(buildBranch == "develop") {
+        env.AWS_PROFILE = "DEV"
+        env.S3_KEY_PREFIX = "NAME"
+        env.S3_BUCKET = "XXX-dev-deploy"
+        env.DEPLOY_GROUP_NAME = "dev-NAME-deploy-group"
+        env.PROJECT = "dev-NAME-bo-frontend"
+        env.PACKAGE_NAME = "${env.PROJECT}"
+        env.SYSTEM_SUFFIX = ":dev"
+        env.HELATH_TIMEOUT = 3
+    }
+}
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Prepare') {
+            steps {
+                script {
+                    initEnvironments("${GIT_BRANCH}")
+                    echo "GIT_BRANCH: ${GIT_BRANCH}"
+                    echo "AWS_PROFILE: ${env.AWS_PROFILE}"
+                    echo "S3_BUCKET: ${env.S3_BUCKET}"
+                    echo "DEPLOY_GROUP_NAME: ${env.DEPLOY_GROUP_NAME}"
+                    echo "PACKAGE NAME: ${env.PACKAGE_NAME}"
+                    sh "ls -al"
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh "npm install"
+                sh "npm run build${env.SYSTEM_SUFFIX}"
+            }
+        }
+
+        stage ('Upload-Bundle') {
+            steps {
+                echo "----- [Uploading Bundle '${env.PACKAGE_NAME}.tar' to '${env.S3_BUCKET}/${env.S3_KEY_PREFIX}/${env.PROJECT}/${env.PACKAGE_NAME}.tar'] -----"
+                sh """
+                ls -al
+                rm -rf ./deploy-bundle
+                mkdir deploy-bundle
+                cp ./appspec.yml ./deploy-bundle
+                cp ./deploy.sh ./deploy-bundle
+                cp -r ./build ./deploy-bundle/
+                cd ./deploy-bundle
+                tar cf ${env.PACKAGE_NAME}.tar *
+                ls -al
+                aws s3 cp ./${env.PACKAGE_NAME}.tar s3://${env.S3_BUCKET}/${env.S3_KEY_PREFIX}/${env.PROJECT}/${env.PACKAGE_NAME}.tar --profile ${env.AWS_PROFILE}
+                """
+            }
+        }
+
+        stage ('Deploy') {
+            steps {
+                script {
+                    echo "----- [CodeDeploy Application: ${env.PROJECT}] -----"
+                    sh """
+                    aws deploy create-deployment \
+                    --application-name "${env.PROJECT}" \
+                    --s3-location bucket="${env.S3_BUCKET}",key=${env.S3_KEY_PREFIX}/${env.PROJECT}/${env.PACKAGE_NAME}.tar,bundleType=tar \
+                    --deployment-group-name "${env.DEPLOY_GROUP_NAME}" \
+                    --description "create ${env.PROJECT}" \
+                    --region "${AWS_DEFAULT_REGION}" \
+                    --profile ${env.AWS_PROFILE} \
+                    --output json > DEPLOYMENT_ID.json
+                    """
+                    def textValue = readFile("DEPLOYMENT_ID.json")
+                    def jsonDI =toJson(textValue)
+                    env.DEPLOYMENT_ID = "${jsonDI.deploymentId}"
+                }
+            }
+        }
+
+        stage ('Health-Check') {
+            steps {
+                echo "----- [Health-Check] DEPLOYMENT_ID ${env.DEPLOYMENT_ID} -----"
+                echo "----- [Health-Check] Waiting codedeploy processing -----"
+                timeout(time: "${env.HELATH_TIMEOUT}", unit: 'MINUTES'){
+                    sh """
+                    aws deploy wait deployment-successful --deployment-id ${env.DEPLOYMENT_ID} --profile ${env.AWS_PROFILE}
+                    """
+                }
+            }
+        }
+    }
+}

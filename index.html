@@ -1,20 +1,53 @@
 <!doctype html>
 <html><head><title></title>
 <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-</style>
-<script type="text/javascript">
+<link rel="stylesheet" href="./common/default.css"/>
+<script src="./common/jquery-3.7.0.min.js"></script>
+<script type="text/javascript" src="./common/default.js"></script>
+
+<script>
+$(document).ready(function(){
+
+	$('.screenshot').each(function(idx){
+		$(this).attr('height',$(this)[0].height);
+	});
+	$('.screenshot').click(function(){
+		if(parseInt($(this).attr('height'))==parseInt($(this)[0].height)) $(this).css('height','auto');
+		else $(this).css('height',$(this).attr('height'));		
+	});
+});
 </script>
 </head>
 <body>
+<h1>Technique & Skills</h1>
 
 <a href="./skill/application-architecture.html">Application Architecture</a><br/>
 <a href="./skill/java.html">JAVA, Spring, SpringBoot</a><br/>
 <a href="./skill/nodejs.html"></a>NodeJS, Express, Relay</a><br/>
 <a href="./skill/graphic.html"></a>그래픽 편집</a><br/>
 
+
 <br/><br/>
-이 사이트는 github로 운영하고 있습니다.<br/>
+<h3>Spring Cloud Gateway</h3>
+<img src="./images/springboot-cloud-gateway-1.png" class="screenshot"/>
+<img src="./images/springboot-cloud-gateway-2.png" class="screenshot"/>
+<br/><br/>
+
+<br/><br/>
+<h3>NodeJS Relay</h3>
+<img src="./images/nodejs-relay-1.png" class="screenshot"/>
+<img src="./images/nodejs-relay-2.png" class="screenshot"/>
+<br/><br/>
+
+
+<h3>Jenkins Deployment Process (CI/CD)</h3>
+<img src="./images/jenkins-deploy-1.png" class="screenshot"/>
+<img src="./images/jenkins-deploy-2.png" class="screenshot"/>
+<br/>
+AWS의 CodeCommit, CodePipeline, CodeDeploy로 무중단 배포 가능,<br/>
+다른 클라우드의 비슷한 배포시스템으로도 구축 가능<br/>
+
+<br/><br/>
 <a href="mailto:kaudo@msn.com">kaudo@msn.com</a>
 
 <br/></body></html>
