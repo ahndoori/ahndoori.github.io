@@ -11,39 +11,39 @@ $(document).ready(function(){
 	$('.screenshot').each(function(idx){
 		$(this).attr('height',$(this)[0].height);
 	});
+
 	$('.screenshot').click(function(){
 		if(parseInt($(this).attr('height'))==parseInt($(this)[0].height)) $(this).css('height','auto');
 		else $(this).css('height',$(this).attr('height'));		
 	});
+
 });
 </script>
 </head>
 <body>
 <h1>Technique & Skills</h1>
 
-<a href="./skill/application-architecture.html">Application Architecture</a><br/>
-<a href="./skill/java.html">JAVA, Spring, SpringBoot</a><br/>
-<a href="./skill/nodejs.html"></a>NodeJS, Express, Relay</a><br/>
-<a href="./skill/graphic.html"></a>그래픽 편집</a><br/>
-
-
 <br/><br/>
 <h3>개발환경</h3>
 <br/><br/>
 
-<h3>Jenkins Deployment Process (CI/CD)</h3>
-Build CI/CD on AWS: CodeCommit, CodePipeline, CodeDeploy<br/>
+<h3>CI/CD</h3>
+Jenkins, AWS (CodeCommit, CodePipeline, CodeDeploy) 배포 자동화<br/>
 기타 여러 클라우드 시스템 상에서 배포 시스템 구축<br/>
 <img src="./images/jenkins-deploy-1.png" class="screenshot"/>
 <img src="./images/jenkins-deploy-2.png" class="screenshot"/>
 <br/>
 
-
+<h3>서버 구축</h3>
+Cloud, Linux, Windows 서버 구축<br/>
+Tomcat, Jeus, Weblogic, Nginx, NodeJs, Python, PM2...<br/>
+<br/>
 
 
 <br/><br/>
 <h3>공통모듈</h3>
-Grid, File I/O, Auth(Login), 솔루션 연동, 
+Grid, File I/O, 솔루션 연동,
+CORS, RestFul, Gateway, Relay, JWT, OAuth...
 <br/><br/>
 
 
