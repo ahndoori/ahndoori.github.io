@@ -13,8 +13,12 @@ $(document).ready(function(){
 	});
 
 	$('.screenshot').click(function(){
-		if(parseInt($(this).attr('height'))==parseInt($(this)[0].height)) $(this).css('height','auto');
-		else $(this).css('height',$(this).attr('height'));		
+		if(parseInt($(this).attr('height'))==parseInt($(this)[0].height)){
+			$('.screenshot').each(function(idx){
+				$(this).css('height',$(this).attr('height'));
+			});
+			$(this).css('height','auto');
+		}else $(this).css('height',$(this).attr('height'));
 	});
 
 });
@@ -30,7 +34,6 @@ $(document).ready(function(){
 <img src="./images/architecture-2.png" class="screenshot"/>
 <img src="./images/architecture-3.png" class="screenshot"/>
 <img src="./images/architecture-4.png" class="screenshot"/>
-<img src="./images/architecture-5.png" class="screenshot"/>
 <br/>
 <br/>
 
