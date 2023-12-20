@@ -8,11 +8,11 @@
 <script>
 $(document).ready(function(){
 
-	$('.screenshot').each(function(idx){
+	$('.screenshot img').each(function(idx){
 		$(this).attr('height',$(this)[0].height);
 	});
 
-	$('.screenshot').click(function(){
+	$('.screenshot img').click(function(){
 		if(parseInt($(this).attr('height'))==parseInt($(this)[0].height)){
 			$('.screenshot').each(function(idx){
 				$(this).css('height',$(this).attr('height'));
@@ -30,43 +30,56 @@ $(document).ready(function(){
 
 
 <h3>Architecture Diagram</h3>
-<img src="./images/architecture-1.png" class="screenshot"/>
-<img src="./images/architecture-2.png" class="screenshot"/>
-<img src="./images/architecture-3.png" class="screenshot"/>
-<img src="./images/architecture-4.png" class="screenshot"/>
-<br/>
+<div class="screenshot">
+<img src="./images/architecture-1.png"/>
+<img src="./images/architecture-2.png"/>
+<img src="./images/architecture-3.png"/>
+<img src="./images/architecture-4.png"/>
+</div>
 <br/>
 
 
 <h3>개발환경 구성</h3>
-JAVA Spring, SpringBoot, 스프링기반의 모든 프레임워크 (전자정부, AnyFrame, LafJ, DevOn...)<br/>
-NodeJS (Express...), React, Python (Flask, Sanic...)<br/>
-데이터베이스 연동 Oracle, MS-SQL, MySql, PostgreSQL...<br/>
+<ul>
+<li>JAVA Spring, SpringBoot, 스프링기반의 모든 프레임워크 (전자정부, AnyFrame, LafJ, DevOn...)</li>
+<li>NodeJS (Express...), React, Python (Flask, Sanic...)</li>
+<li>데이터베이스 연동 Oracle, MS-SQL, MySql, PostgreSQL...</li>
+</p>
+</ul>
 <br/>
 
 
 <h3>CI/CD</h3>
-Jenkins, AWS (CodeCommit, CodePipeline, CodeDeploy) 배포 자동화<br/>
-기타 여러 클라우드 시스템 상에서 배포 시스템 구축<br/>
-<img src="./images/jenkins-deploy-1.png" class="screenshot"/>
-<img src="./images/jenkins-deploy-2.png" class="screenshot"/>
-<br/>
+<ul>
+<li>Jenkins, AWS (CodeCommit, CodePipeline, CodeDeploy) 배포 자동화</li>
+<li>기타 여러 클라우드 시스템 상에서 배포 시스템 구축</li>
+</ul>
+<div class="screenshot">
+<img src="./images/jenkins-deploy-1.png"/>
+<img src="./images/jenkins-deploy-2.png"/>
+</div>
 <br/>
 
 <h3>서버 구축</h3>
-Cloud, Linux, Windows 서버 구축<br/>
-Tomcat, Jeus, Weblogic, Nginx, NodeJs, Python, PM2...<br/>
+<ul>
+<li>Cloud, Linux, Windows 서버 구축</li>
+<li>Tomcat, Jeus, Weblogic, Nginx, NodeJs, Python, PM2...</li>
+</ul>
 <br/>
 
 
 <h3>공통모듈 개발</h3>
-Grid, File I/O, 솔루션 연동,<br/>
-CORS, RestFul, Gateway, Relay, JWT, OAuth...<br/>
+<ul>
+<li>Grid, File I/O, 솔루션 연동,</li>
+<li>CORS, RestFul, Gateway, Relay, JWT, OAuth...</li>
+</ul>
 <br/>
 
 
 <h3>Batch Process</h3>
-Spring Batch, Linux CronTab, AWS Batch...<br/>
+<ul>
+<li>Spring Batch, Linux CronTab, AWS Batch...</li>
+</ul>
 <br/>
 
 
@@ -76,16 +89,18 @@ Spring Batch, Linux CronTab, AWS Batch...<br/>
 
 
 <h3>NodeJS Relay Service</h3>
-<img src="./images/nodejs-relay-1.png" class="screenshot"/>
-<img src="./images/nodejs-relay-2.png" class="screenshot"/>
-<br/>
+<div class="screenshot">
+<img src="./images/nodejs-relay-1.png"/>
+<img src="./images/nodejs-relay-2.png"/>
+</div>
 <br/>
 
 
 <h3>Spring Cloud Gateway</h3>
-<img src="./images/springboot-cloud-gateway-1.png" class="screenshot"/>
-<img src="./images/springboot-cloud-gateway-2.png" class="screenshot"/>
-<br/>
+<div class="screenshot">
+<img src="./images/springboot-cloud-gateway-1.png"/>
+<img src="./images/springboot-cloud-gateway-2.png"/>
+</div>
 <br/>
 
 
