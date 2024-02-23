@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<head>
+<title>AHNDOORI - AFTER EFFECT, LOTTIE</title>
+<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./common/default.css"/>
+<script src="./common/jquery-3.7.0.min.js"></script>
+<script type="text/javascript" src="./common/default.js"></script>
+<script>
+$(document).ready(function(){
+
+	$('.screenshot img').each(function(idx){
+		$(this).attr('height',$(this)[0].height);
+	});
+
+	$('.screenshot img').click(function(){
+		if(parseInt($(this).attr('height'))==parseInt($(this)[0].height)){
+			$('.screenshot').each(function(idx){
+				$(this).css('height',$(this).attr('height'));
+			});
+			$(this).css('height','auto');
+		}else $(this).css('height',$(this).attr('height'));
+	});
+
+});
+</script>
+</head>
+<body>
+<h1>AfterEffect, Lottie</h1><br/>
+&nbsp;- 웹 서비스 아키텍쳐 구성<br/>
+&nbsp;- Android/iOS와 API 서비스 아키텍쳐 구성<br/>
+&nbsp;- 시스템 운영/배포 아키텍쳐 구성<br/>
+<br/><br/>
+
+
+<h3>Architecture Diagram</h3>
+<!--
+<ul>
+	<li>SAMPLE DIAGRAM</li>
+</ul>
+-->
+<div class="screenshot">
+<img src="./images/math-solv-1.png"/>
+<img src="./images/math-solv-2.png"/>
+<img src="./images/math-solv-3.png"/>
+<img src="./images/math-solv-4.png"/>
+<img src="./images/math-solv-5.png"/>
+<img src="./images/math-solv-6.png"/>
+</div>
+<br/>
+
+
+<h3>개발환경 구성</h3>
+<ul>
+<li>JAVA Spring, SpringBoot, 스프링기반의 모든 프레임워크 (전자정부, AnyFrame, LafJ, DevOn...)</li>
+<li>NodeJS (Express...), React, Python (Flask, Sanic...)</li>
+<li>데이터베이스 연동 Oracle, MS-SQL, MySql, PostgreSQL...</li>
+</ul>
+<br/>
+
+
+<h3>CI/CD</h3>
+<ul>
+<li>Jenkins, AWS (CodeCommit, CodePipeline, CodeDeploy) 배포 자동화</li>
+<li>기타 여러 클라우드 시스템 상에서 배포 시스템 구축</li>
+</ul>
+<div class="screenshot">
+<img src="./images/jenkins-deploy-1.png"/>
+<img src="./images/jenkins-deploy-2.png"/>
+</div>
+<br/>
+
+<h3>서버 구축</h3>
+<ul>
+<li>Cloud, Linux, Windows 서버 구축</li>
+<li>Tomcat, Jeus, Weblogic, Nginx, NodeJs, Python, PM2...</li>
+</ul>
+<br/>
+
+
+<h3>공통모듈 개발</h3>
+<ul>
+<li>Grid, File I/O, 솔루션 연동, 배치, CORS, RestFul, Gateway, Relay, JWT, OAuth ...
+</li>
+</ul>
+<br/>
+
+
+<h3>Batch Process</h3>
+<ul>
+<li>Spring Batch, Linux CronTab, AWS Batch...</li>
+</ul>
+<br/>
+
+
+
+<h3>Relay Service</h3>
+<ul>
+	<li>중계서버, 릴레이서버, 게이트웨이서버 등으로 불리우며, 방화벽이나 DMZ의 구성으로 접근이 불가능한 WAS나 API를 외부와의 통신이 가능하도록 어플리케이션 서버 구축</li>
+	<li>NodeJS, JAVA, Springboot Cloud Gateway, Servlet등으로 개발</li>
+</ul>
+<div class="screenshot">
+<img src="./images/nodejs-relay-1.png"/>
+<img src="./images/nodejs-relay-2.png"/>
+<img src="./images/springboot-cloud-gateway-1.png"/>
+<img src="./images/springboot-cloud-gateway-2.png"/>
+</div>
+<br/>
+
+
+<h3>AWS Auto-Scaling</h3>
+<ul>
+	<li>EC2, Machine Image, Launch Template등을 이용하여 서비스 사용량에 따른 적절한 시스템 대응</li>
+</ul>
+<br/>
+
+
+<h3>AWS Blue/Green Deployment</h3>
+<ul>
+	<li>EC2, ELB, AMI등을 활용하여 즉시 롤백 가능한 무중단 배포 구성</li>
+</ul>
+<br/>
+
+<h3>Sample Image</h3>
+<div class="screenshot">
+<img src="./images/sample-aws-ec2.png"/>
+<img src="./images/sample-aws-ami.png"/>
+<img src="./images/sample-aws-alb.png"/>
+<img src="./images/sample-aws-auto-scale.png"/>
+</div>
+<br/>
+
+<br/>
+<i style="float:right"><a href="mailto:kaudo@msn.com">2024/01/01 AHNDOORI</a></i><br/>
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+</body></html>
